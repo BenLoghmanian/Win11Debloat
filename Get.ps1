@@ -65,7 +65,7 @@ Write-Output "------------------------------------------------------------------
 Write-Output "> Downloading Win11Debloat..."
 
 # Download latest version of Win11Debloat from github as zip archive
-Invoke-WebRequest https://github.com/BenLoghmanian/Win11Debloat/archive/master.zip -OutFile "C:\TEMP/win11debloat-temp.zip"
+Invoke-WebRequest http://github.com/BenLoghmanian/Win11Debloat/archive/master.zip -OutFile "C:\TEMP/win11debloat-temp.zip"
 
 # Remove old script folder if it exists, except for CustomAppsList and SavedSettings files
 if (Test-Path "C:\TEMP/Win11Debloat/Win11Debloat-master") {
