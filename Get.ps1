@@ -65,39 +65,29 @@ Write-Output "------------------------------------------------------------------
 Write-Output "> Downloading Win11Debloat..."
 
 # Download latest version of Win11Debloat from github as zip archive
-Invoke-WebRequest http://github.com/raphire/win11debloat/archive/master.zip -OutFile "$env:TEMP/win11debloat-temp.zip"
+Invoke-WebRequest https://github.com/BenLoghmanian/Win11Debloat/archive/master.zip -OutFile "C:\TEMP/win11debloat-temp.zip"
 
 # Remove old script folder if it exists, except for CustomAppsList and SavedSettings files
-if (Test-Path "$env:TEMP/Win11Debloat/Win11Debloat-master") {
+if (Test-Path "C:\TEMP/Win11Debloat/Win11Debloat-master") {
     Write-Output ""
     Write-Output "> Cleaning up old Win11Debloat folder..."
-    Get-ChildItem -Path "$env:TEMP/Win11Debloat/Win11Debloat-master" -Exclude CustomAppsList,SavedSettings | Remove-Item -Recurse -Force
+    Get-ChildItem -Path "C:\TEMP/Win11Debloat/Win11Debloat-master" -Exclude CustomAppsList,SavedSettings | Remove-Item -Recurse -Force
 }
 
 Write-Output ""
 Write-Output "> Unpacking..."
 
 # Unzip archive to Win11Debloat folder
-Expand-Archive "$env:TEMP/win11debloat-temp.zip" "$env:TEMP/Win11Debloat"
+Expand-Archive "C:\TEMP/win11debloat-temp.zip" "C:\TEMP/Win11Debloat"
 
 # Remove archive
-Remove-Item "$env:TEMP/win11debloat-temp.zip"
-
-# Make list of arguments to pass on to the script
-$arguments = $($PSBoundParameters.GetEnumerator() | ForEach-Object {
-    if ($_.Value -eq $true) {
-        "-$($_.Key)"
-    } 
-    else {
-         "-$($_.Key) ""$($_.Value)"""
-    }
-})
+Remove-Item "C:\TEMP/win11debloat-temp.zip"
 
 Write-Output ""
 Write-Output "> Running Win11Debloat..."
 
 # Run Win11Debloat script with the provided arguments
-$debloatProcess = Start-Process powershell.exe -PassThru -ArgumentList "-executionpolicy bypass -File $env:TEMP\Win11Debloat\Win11Debloat-master\Win11Debloat.ps1 $arguments" -Verb RunAs
+$debloatProcess = Start-Process powershell.exe -PassThru -ArgumentList "-executionpolicy bypass -File C:\TEMP\Win11Debloat\Win11Debloat-master\Win11Debloat.ps1 -Silent -DisableFastStartup -RemoveAppsCustom -DisableDVR -DisableTelemetry -DisableSuggestions -DisableDesktopSpotlight -DisableLockscreenTips -DisableBing -DisableCopilot -ShowKnownFileExt -HideTaskview -HideChat -DisableWidgets -DisableStartRecommended -HideHome -HideGallery -ExploreToThisPC" -Verb RunAs
 
 # Wait for the process to finish before continuing
 if ($null -ne $debloatProcess) {
@@ -105,12 +95,12 @@ if ($null -ne $debloatProcess) {
 }
 
 # Remove all remaining script files, except for CustomAppsList and SavedSettings files
-if (Test-Path "$env:TEMP/Win11Debloat/Win11Debloat-master") {
+if (Test-Path "C:\TEMP/Win11Debloat/Win11Debloat-master") {
     Write-Output ""
     Write-Output "> Cleaning up..."
 
     # Cleanup, remove Win11Debloat directory
-    Get-ChildItem -Path "$env:TEMP/Win11Debloat/Win11Debloat-master" -Exclude CustomAppsList,SavedSettings | Remove-Item -Recurse -Force
+    Get-ChildItem -Path "C:\TEMP/Win11Debloat/Win11Debloat-master" -Exclude CustomAppsList,SavedSettings | Remove-Item -Recurse -Force
 }
 
 Write-Output ""
