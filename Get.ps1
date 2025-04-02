@@ -63,36 +63,36 @@ Write-Output " Win11Debloat Script - Get"
 Write-Output "-------------------------------------------------------------------------------------------"
 
 Write-Output "> Creating temp dir ..."
-New-Item -ItemType Directory -Path C:\Temp -Force | Out-Null
+New-Item -ItemType Directory -Path C:\TionIT -Force | Out-Null
 
 Write-Output ""
 
 Write-Output "> Downloading Win11Debloat..."
 
 # Download latest version of Win11Debloat from github as zip archive
-Invoke-WebRequest http://github.com/BenLoghmanian/Win11Debloat/archive/master.zip -OutFile "C:\Temp/win11debloat-temp.zip"
+Invoke-WebRequest http://github.com/BenLoghmanian/Win11Debloat/archive/master.zip -OutFile "C:\TionIT/win11debloat-temp.zip"
 
 # Remove old script folder if it exists, except for CustomAppsList and SavedSettings files
-if (Test-Path "C:\Temp/Win11Debloat/Win11Debloat-master") {
+if (Test-Path "C:\TionIT/Win11Debloat/Win11Debloat-master") {
     Write-Output ""
     Write-Output "> Cleaning up old Win11Debloat folder..."
-    Get-ChildItem -Path "C:\Temp/Win11Debloat/Win11Debloat-master" | Remove-Item -Recurse -Force
+    Get-ChildItem -Path "C:\TionIT/Win11Debloat/Win11Debloat-master" | Remove-Item -Recurse -Force
 }
 
 Write-Output ""
 Write-Output "> Unpacking..."
 
 # Unzip archive to Win11Debloat folder
-Expand-Archive "C:\Temp/win11debloat-temp.zip" "C:\Temp/Win11Debloat"
+Expand-Archive "C:\TionIT/win11debloat-temp.zip" "C:\TionIT/Win11Debloat"
 
 # Remove archive
-Remove-Item "C:\Temp/win11debloat-temp.zip"
+Remove-Item "C:\TionIT/win11debloat-temp.zip"
 
 Write-Output ""
 Write-Output "> Running Win11Debloat..."
 
 # Run Win11Debloat script with the provided arguments
-$debloatProcess = Start-Process powershell.exe -PassThru -ArgumentList "-executionpolicy bypass -File C:\Temp\Win11Debloat\Win11Debloat-master\Win11Debloat.ps1 -Silent -DisableFastStartup -RemoveAppsCustom -DisableDVR -DisableTelemetry -DisableSuggestions -DisableDesktopSpotlight -DisableLockscreenTips -DisableBing -DisableCopilot -ShowKnownFileExt -HideTaskview -HideChat -DisableWidgets -DisableStartRecommended -HideHome -HideGallery -ExplorerToThisPC" -Verb RunAs
+$debloatProcess = Start-Process powershell.exe -PassThru -ArgumentList "-executionpolicy bypass -File C:\TionIT\Win11Debloat\Win11Debloat-master\Win11Debloat.ps1 -Silent -DisableFastStartup -RemoveAppsCustom -DisableDVR -DisableTelemetry -DisableSuggestions -DisableDesktopSpotlight -DisableLockscreenTips -DisableBing -DisableCopilot -ShowKnownFileExt -HideTaskview -HideChat -DisableWidgets -DisableStartRecommended -HideHome -HideGallery -ExplorerToThisPC" -Verb RunAs
 
 # Wait for the process to finish before continuing
 if ($null -ne $debloatProcess) {
@@ -100,12 +100,12 @@ if ($null -ne $debloatProcess) {
 }
 
 # Remove all remaining script files, except for CustomAppsList and SavedSettings files
-if (Test-Path "C:\Temp/Win11Debloat/Win11Debloat-master") {
+if (Test-Path "C:\TionIT/Win11Debloat/Win11Debloat-master") {
     Write-Output ""
     Write-Output "> Cleaning up executables..."
 
     # Cleanup, remove Win11Debloat directory
-    Get-ChildItem -Path "C:\Temp/Win11Debloat/Win11Debloat-master" | Remove-Item -Recurse -Force
+    Get-ChildItem -Path "C:\TionIT/Win11Debloat/Win11Debloat-master" | Remove-Item -Recurse -Force
 }
 
 Write-Output ""
