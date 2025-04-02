@@ -86,7 +86,7 @@ Write-Output "> Unpacking..."
 Expand-Archive "C:\Temp/win11debloat-temp.zip" "C:\Temp/Win11Debloat"
 
 # Remove archive
-# Remove-Item "C:\Temp/win11debloat-temp.zip"
+Remove-Item "C:\Temp/win11debloat-temp.zip"
 
 Write-Output ""
 Write-Output "> Running Win11Debloat..."
@@ -105,7 +105,7 @@ if (Test-Path "C:\Temp/Win11Debloat/Win11Debloat-master") {
     Write-Output "> Cleaning up..."
 
     # Cleanup, remove Win11Debloat directory
-    # Get-ChildItem -Path "C:\Temp/Win11Debloat/Win11Debloat-master" -Exclude CustomAppsList,SavedSettings | Remove-Item -Recurse -Force
+    Get-ChildItem -Path "C:\Temp/Win11Debloat/Win11Debloat-master" -Exclude CustomAppsList,SavedSettings | Remove-Item -Recurse -Force
 }
 
 Write-Output ""
