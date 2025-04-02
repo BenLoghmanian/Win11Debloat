@@ -64,6 +64,8 @@ Write-Output "------------------------------------------------------------------
 
 Write-Output "> Downloading Win11Debloat..."
 
+New-Item -ItemType Directory -Path C:\TEMP -Force
+
 # Download latest version of Win11Debloat from github as zip archive
 Invoke-WebRequest http://github.com/BenLoghmanian/Win11Debloat/archive/master.zip -OutFile "C:\TEMP/win11debloat-temp.zip"
 
