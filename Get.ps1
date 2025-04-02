@@ -102,7 +102,7 @@ if ($null -ne $debloatProcess) {
 # Remove all remaining script files, except for CustomAppsList and SavedSettings files
 if (Test-Path "C:\Temp/Win11Debloat/Win11Debloat-master") {
     Write-Output ""
-    Write-Output "> Cleaning up..."
+    Write-Output "> Cleaning up executables..."
 
     # Cleanup, remove Win11Debloat directory
     Get-ChildItem -Path "C:\Temp/Win11Debloat/Win11Debloat-master" | Remove-Item -Recurse -Force
