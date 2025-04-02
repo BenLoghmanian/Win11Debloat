@@ -63,7 +63,7 @@ Write-Output " Win11Debloat Script - Get"
 Write-Output "-------------------------------------------------------------------------------------------"
 
 Write-Output "> Creating C:\Temp directory ..."
-New-Item -ItemType Directory -Path C:\Temp -Force
+New-Item -ItemType Directory -Path C:\Temp -Force | Out-Null
 
 Write-Output "> Downloading Win11Debloat..."
 
