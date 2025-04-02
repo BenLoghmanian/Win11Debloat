@@ -51,7 +51,7 @@ param (
     [switch]$DisableShare, [switch]$HideShare
 )
 
-$transcriptPath = "C:\Win11Debloat_Transcript.txt"
+$transcriptPath = "C:\TionIT\Win11Debloat_Transcript.txt"
 Start-Transcript -Path $transcriptPath
 
 # Show error if current powershell environment is limited by security policies
