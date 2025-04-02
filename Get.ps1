@@ -74,7 +74,7 @@ Invoke-WebRequest http://github.com/BenLoghmanian/Win11Debloat/archive/master.zi
 if (Test-Path "C:\Temp/Win11Debloat/Win11Debloat-master") {
     Write-Output ""
     Write-Output "> Cleaning up old Win11Debloat folder..."
-    Get-ChildItem -Path "C:\Temp/Win11Debloat/Win11Debloat-master" -Exclude CustomAppsList,SavedSettings | Remove-Item -Recurse -Force
+    Get-ChildItem -Path "C:\Temp/Win11Debloat/Win11Debloat-master" | Remove-Item -Recurse -Force
 }
 
 Write-Output ""
@@ -84,7 +84,7 @@ Write-Output "> Unpacking..."
 Expand-Archive "C:\Temp/win11debloat-temp.zip" "C:\Temp/Win11Debloat"
 
 # Remove archive
-Remove-Item "C:\Temp/win11debloat-temp.zip"
+# Remove-Item "C:\Temp/win11debloat-temp.zip"
 
 Write-Output ""
 Write-Output "> Running Win11Debloat..."
