@@ -103,7 +103,7 @@ if (Test-Path "C:\Temp/Win11Debloat/Win11Debloat-master") {
     Write-Output "> Cleaning up..."
 
     # Cleanup, remove Win11Debloat directory
-    Get-ChildItem -Path "C:\Temp/Win11Debloat/Win11Debloat-master" -Exclude CustomAppsList,SavedSettings | Remove-Item -Recurse -Force
+    # Get-ChildItem -Path "C:\Temp/Win11Debloat/Win11Debloat-master" -Exclude CustomAppsList,SavedSettings | Remove-Item -Recurse -Force
 }
 
 Write-Output ""
