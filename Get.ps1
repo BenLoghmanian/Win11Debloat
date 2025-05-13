@@ -92,7 +92,7 @@ Write-Output ""
 Write-Output "> Running Win11Debloat..."
 
 # Run Win11Debloat script with the provided arguments
-$debloatProcess = Start-Process powershell.exe -PassThru -ArgumentList "-executionpolicy bypass -File C:\TionIT\Win11Debloat\Win11Debloat-master\Win11Debloat.ps1 -Silent -DisableFastStartup -RemoveAppsCustom -DisableDVR -DisableTelemetry -DisableSuggestions -DisableDesktopSpotlight -DisableLockscreenTips -DisableBing -DisableCopilot -ShowKnownFileExt -HideTaskview -HideChat -DisableWidgets -DisableStartRecommended -HideHome -HideGapllery -ExplorerToThisPC" -Verb Runas
+$debloatProcess = Start-Process "C:\TionIT\Win11Debloat\Win11Debloat-master\Win11Debloat.ps1" -ArgumentList "-Silent -DisableFastStartup -RemoveAppsCustom -DisableDVR -DisableTelemetry -DisableSuggestions -DisableDesktopSpotlight -DisableLockscreenTips -DisableBing -DisableCopilot -ShowKnownFileExt -HideTaskview -HideChat -DisableWidgets -DisableStartRecommended -HideHome -HideGapllery -ExplorerToThisPC"
 
 # Wait for the process to finish before continuing
 if ($null -ne $debloatProcess) {
