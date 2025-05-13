@@ -92,6 +92,20 @@ Write-Output ""
 Write-Output "> Running Win11Debloat..."
 
 # Run Win11Debloat script with the provided arguments
-& powershell.exe -ExecutionPolicy Bypass -File "C:\TionIT\Win11Debloat\Win11Debloat-master\Win11Debloat.ps1" -Silent -DisableFastStartup -RemoveAppsCustom -DisableDVR -DisableTelemetry -DisableSuggestions -DisableDesktopSpotlight -DisableLockscreenTips -DisableBing -DisableCopilot -ShowKnownFileExt -HideTaskview -HideChat -DisableWidgets -DisableStartRecommended -HideHome -HideGapllery -ExplorerToThisPC
+$debloatProcess = Start-Process powershell.exe -PassThru -ArgumentList "-executionpolicy bypass -File C:\TionIT\Win11Debloat\Win11Debloat-master\Win11Debloat.ps1 -Silent -DisableFastStartup -RemoveAppsCustom -DisableDVR -DisableTelemetry -DisableSuggestions -DisableDesktopSpotlight -DisableLockscreenTips -DisableBing -DisableCopilot -ShowKnownFileExt -HideTaskview -HideChat -DisableWidgets -DisableStartRecommended -HideHome -HideGapllery -ExplorerToThisPC" -Verb Runas
+
+# Wait for the process to finish before continuing
+if ($null -ne $debloatProcess) {
+    $debloatProcess.WaitForExit()
+}
+
+# Remove all remaining script files, except for CustomAppsList and SavedSettings files
+if (Test-Path "C:\TionIT/Win11Debloat/Win11Debloat-master") {
+    Write-Output ""
+    Write-Output "> Cleaning up executables..."
+
+    # Cleanup, remove Win11Debloat directory
+    Get-ChildItem -Path "C:\TionIT/Win11Debloat/Win11Debloat-master" | Remove-Item -Recurse -Force
+}
 
 Write-Output ""
